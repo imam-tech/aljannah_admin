@@ -17,7 +17,7 @@ const _axios = axios.create(config)
 
 _axios.interceptors.request.use(
   function (config) {
-    const accessToken = Cookies.get('access_token')
+    const accessToken = Cookies.get('access_token_aljannah')
     if(accessToken){
       config.headers['Authorization'] = `Bearer ${ accessToken }`;
     }

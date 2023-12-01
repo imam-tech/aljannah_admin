@@ -3,7 +3,7 @@ import vuex from '../store/store'
 
 export default function hasLoggedIn({ next, router, to }) {
     console.log("access")
-    if (!Cookies.get('access_token')) {
+    if (!Cookies.get('access_token_aljannah')) {
         return router.push('/auth/login');
     }
 

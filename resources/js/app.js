@@ -3,6 +3,7 @@ import router from './src/routers/router.js'
 import App from './src/App.vue'
 import store from './src/store/store.js'
 import './src/plugins/axios.js'
+import './src/plugins/vuesax.js'
 
 new Vue({
     router,

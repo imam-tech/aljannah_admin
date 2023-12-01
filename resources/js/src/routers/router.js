@@ -3,9 +3,17 @@ import Router from 'vue-router'
 
 import hasLoggedIn from "../middleware/hasLoggedIn";
 
-import authRouter from './authRouter';
 import ParentLayout from '../layouts/ParentLayout.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
+import MenuLayout from '../layouts/MenuLayout.vue'
+
+import authRouter from './authRouter';
+import adminRouter from './adminRouter';
+import onlineAdmissionRouter from './onlineAdmissionRouter'
+
+import authParentRouter from './adminParent/authParentRouter';
+import adminParentRouter from './adminParent/indexRouter';
+import AdminLayout from "../layouts/AdminLayout";
 
 Vue.use(Router)
 
@@ -21,23 +29,49 @@ const router = new Router({
     routes: [
         {
             path: '/app',
-            component: ParentLayout,
+            component: AdminLayout,
             children: [
                 {
                     path: '',
                     component:  () => import('../pages/Index'),
                     meta: {
-                        // middleware: hasLoggedIn,
+                        middleware: hasLoggedIn,
                         pageTitle: 'Dashboard',
                     },
-                }
+                },
+                {
+                    path: 'admin',
+                    component: MenuLayout,
+                    children: adminRouter
+                },
             ]
+        },
+        {
+            path: '/online-admission',
+            component: MenuLayout,
+            children: onlineAdmissionRouter
         },
         {
             path: '/auth',
             component: AuthLayout,
             children: authRouter
-        }
+        },
+        {
+            path: '/parent',
+            component: MenuLayout,
+            children: [
+                {
+                    path: 'app',
+                    component: ParentLayout,
+                    children: adminParentRouter
+                },
+                {
+                    path: 'auth',
+                    component: AuthLayout,
+                    children: authParentRouter
+                },
+            ]
+        },
     ]
 })
 

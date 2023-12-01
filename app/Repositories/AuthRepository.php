@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\UserParent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,10 +23,7 @@ class AuthRepository {
 
             return resultFunction("", true, [
                 "user" => $user,
-                "role" => $user->role->title,
-                "permissions" => array_column($user->role->rolePermissions->toArray(), 'permission'),
-                "token" => $token,
-                "sign_at" => date("Y-m-d H:i:s")
+                "token" => $token
             ]);
         } catch (\Exception $e) {
             return resultFunction("Err code AR-L: catch " . $e->getMessage());
@@ -38,6 +36,26 @@ class AuthRepository {
             return resultFunction("Success logged out", true);
         } catch (\Exception $e) {
             return resultFunction("Err code AR-LOg: catch " . $e->getMessage());
+        }
+    }
+
+    public function loginParent($data) {
+        try {
+            $userParent = UserParent::with([])->where('kode_siswa', $data['kode_siswa'])->first();
+            if (!$userParent) return resultFunction("Err code AR-L: kode siswa " . $data['kode_siswa'] . ' tidak ditemukan');
+
+            if (!Hash::check($data['password'], $userParent['password'])) {
+                return resultFunction("Err code AR-L: Kata sandi untk kode siswa " . $data['kode_siswa'] . ' tidak benar');
+            }
+
+            $token = $userParent->createToken('API Token')->plainTextToken;
+
+            return resultFunction("", true, [
+                "user" => $userParent,
+                "token" => $token
+            ]);
+        } catch (\Exception $e) {
+            return resultFunction("Err code AR-L: catch " . $e->getMessage());
         }
     }
 }

@@ -16,3 +16,12 @@ use App\Http\Controllers\AppController;
 
 Route::get('/app/{any?}', [AppController::class, 'index'])->where('any', '.*');
 Route::get('/auth/{any?}', [AppController::class, 'index'])->where('any', '.*');
+Route::get('/online-admission/{any?}', [AppController::class, 'index'])->where('any', '.*');
+Route::get('/', function() {
+    return redirect(url('app'));
+});
+Route::get('/parent/app/{any?}', [AppController::class, 'indexParent'])->where('any', '.*');
+Route::get('/parent/auth/{any?}', [AppController::class, 'indexParent'])->where('any', '.*');
+Route::get('/parent/', function() {
+    return redirect(url('parent/app'));
+});

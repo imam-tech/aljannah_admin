@@ -53,16 +53,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function () {
                   _this.$store.commit('SET_USER', {
                     'name': responseLogin.data.user.name,
-                    'email': responseLogin.data.user.email,
-                    'permissions': responseLogin.data.permissions,
-                    'roles': responseLogin.data.role,
-                    'sign_at': responseLogin.data.sign_at
+                    'email': responseLogin.data.user.email
+                    // 'permissions' : responseLogin.data.permissions,
+                    // 'roles' : responseLogin.data.role,
+                    // 'sign_at': responseLogin.data.sign_at
                   });
+
                   _this.$store.commit('SET_LOGIN', true);
-                  js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set('access_token', responseLogin.data.token, {
+                  js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set('access_token_aljannah', responseLogin.data.token, {
                     expires: 1
                   });
-                  // this.$router.push('/app');
+                  _this.$router.push('/app');
                 });
               } else {
                 Swal.fire({
@@ -135,10 +136,25 @@ var render = function render() {
       "xlink:href": "vendors/@coreui/icons/svg/free.svg#cil-user"
     }
   })])]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.email,
+      expression: "formData.email"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Username"
+      placeholder: "Email"
+    },
+    domProps: {
+      value: _vm.formData.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "email", $event.target.value);
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-4"
@@ -151,17 +167,27 @@ var render = function render() {
       "xlink:href": "vendors/@coreui/icons/svg/free.svg#cil-lock-locked"
     }
   })])]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.password,
+      expression: "formData.password"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "password",
       placeholder: "Password"
+    },
+    domProps: {
+      value: _vm.formData.password
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "password", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _vm._m(1)])])]);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-6"
@@ -169,28 +195,39 @@ var staticRenderFns = [function () {
     staticClass: "btn btn-primary px-4",
     attrs: {
       type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.loginProcess();
+      }
     }
-  }, [_vm._v("Login")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Login")])]), _vm._v(" "), _vm._m(0)])])]), _vm._v(" "), _vm._m(1)])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "col-6 text-end"
   }, [_c("button", {
     staticClass: "btn btn-link px-0",
     attrs: {
       type: "button"
     }
-  }, [_vm._v("Forgot password?")])])]);
+  }, [_vm._v("Show password")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "card col-md-5 text-white bg-primary py-5"
+    staticClass: "card col-md-5 text-white bg-primary"
   }, [_c("div", {
-    staticClass: "card-body text-center"
-  }, [_c("div", [_c("h2", [_vm._v("Sign up")]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-lg btn-outline-light mt-3",
+    staticClass: "card-body"
+  }, [_c("img", {
     attrs: {
-      type: "button"
+      src: "https://stage-accounting.sgp1.cdn.digitaloceanspaces.com/aljannah.png",
+      alt: "",
+      width: "100%"
     }
-  }, [_vm._v("Register Now!")])])])]);
+  })])]);
 }];
 render._withStripped = true;
 

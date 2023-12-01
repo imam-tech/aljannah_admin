@@ -24,4 +24,9 @@ class AuthController extends Controller
     {
         return response()->json($this->authRepo->logout($request));
     }
+
+    public function loginParent(Request $request)
+    {
+        return response()->json($this->authRepo->loginParent($request->all()));
+    }
 }

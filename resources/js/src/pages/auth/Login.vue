@@ -11,31 +11,27 @@
                       <svg class="icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                       </svg></span>
-                            <input class="form-control" type="text" placeholder="Username">
+                            <input v-model="formData.email" class="form-control" type="text" placeholder="Email">
                         </div>
                         <div class="input-group mb-4"><span class="input-group-text">
                       <svg class="icon">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                       </svg></span>
-                            <input class="form-control" type="password" placeholder="Password">
+                            <input v-model="formData.password" class="form-control" type="password" placeholder="Password">
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <button class="btn btn-primary px-4" type="button">Login</button>
+                                <button @click="loginProcess()" class="btn btn-primary px-4" type="button">Login</button>
                             </div>
                             <div class="col-6 text-end">
-                                <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                                <button class="btn btn-link px-0" type="button">Show password</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card col-md-5 text-white bg-primary py-5">
-                    <div class="card-body text-center">
-                        <div>
-                            <h2>Sign up</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <button class="btn btn-lg btn-outline-light mt-3" type="button">Register Now!</button>
-                        </div>
+                <div class="card col-md-5 text-white bg-primary">
+                    <div class="card-body">
+                        <img src="https://stage-accounting.sgp1.cdn.digitaloceanspaces.com/aljannah.png" alt="" width="100%">
                     </div>
                 </div>
             </div>
@@ -74,13 +70,13 @@
                             this.$store.commit('SET_USER', {
                                 'name' : responseLogin.data.user.name,
                                 'email' : responseLogin.data.user.email,
-                                'permissions' : responseLogin.data.permissions,
-                                'roles' : responseLogin.data.role,
-                                'sign_at': responseLogin.data.sign_at
+                                // 'permissions' : responseLogin.data.permissions,
+                                // 'roles' : responseLogin.data.role,
+                                // 'sign_at': responseLogin.data.sign_at
                             })
                             this.$store.commit('SET_LOGIN', true)
-                            Cookies.set('access_token', responseLogin.data.token, { expires: 1 })
-                            // this.$router.push('/app');
+                            Cookies.set('access_token_aljannah', responseLogin.data.token, { expires: 1 })
+                            this.$router.push('/app');
                         })
                     } else {
                         Swal.fire({

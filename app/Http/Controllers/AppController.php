@@ -8,4 +8,9 @@ class AppController extends Controller
     {
         return view('app');
     }
+
+    public function indexParent()
+    {
+        return view('app');
+    }
 }
