@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Student;
 use App\Models\User;
 use App\Models\UserParent;
 use Illuminate\Support\Facades\Auth;
@@ -41,12 +42,15 @@ class AuthRepository {
 
     public function loginParent($data) {
         try {
-            $userParent = UserParent::with([])->where('kode_siswa', $data['kode_siswa'])->first();
-            if (!$userParent) return resultFunction("Err code AR-L: kode siswa " . $data['kode_siswa'] . ' tidak ditemukan');
+            $student = Student::with(['user_parent'])->where('nomor_induk_siswa', $data['code'])->first();
+            if (!$student) return resultFunction("Err code AR-L: data tidak ditemukan");
 
-            if (!Hash::check($data['password'], $userParent['password'])) {
-                return resultFunction("Err code AR-L: Kata sandi untk kode siswa " . $data['kode_siswa'] . ' tidak benar');
+            if (!$student->user_parent) return resultFunction("Err code AR-L: data tidak ditemukan");
+
+            if (!Hash::check($data['password'], $student->user_parent->kata_sandi)) {
+                return resultFunction("Err code AR-L: Kata sandi untk kode siswa " . $data['code'] . ' tidak benar');
             }
+            $userParent = $student->user_parent;
 
             $token = $userParent->createToken('API Token')->plainTextToken;
 

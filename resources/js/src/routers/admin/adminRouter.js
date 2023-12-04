@@ -1,13 +1,21 @@
+import hasLoggedIn from "../../middleware/hasLoggedIn";
+
 const adminRouter = [
     {
         path: 'user',
         name: 'administrator-user',
-        component:  () => import('../../pages/admin/admin/User')
+        component:  () => import('../../pages/admin/admin/User'),
+        meta: {
+            middleware: hasLoggedIn
+        }
     },
     {
-        path: 'role',
+        path: 'jabatan',
         name: 'administrator-role',
-        component:  () => import('../../pages/admin/admin/Role')
+        component:  () => import('../../pages/admin/admin/Jabatan'),
+        meta: {
+            middleware: hasLoggedIn
+        }
     }
 ];
 

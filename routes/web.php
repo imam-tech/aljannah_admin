@@ -25,3 +25,7 @@ Route::get('/parent/auth/{any?}', [AppController::class, 'indexParent'])->where(
 Route::get('/parent/', function() {
     return redirect(url('parent/app'));
 });
+
+Route::group(['prefix' => 'export'], function () {
+    Route::get('received-student', [AppController::class, 'receivedStudent']);
+});

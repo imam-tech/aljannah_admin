@@ -5,28 +5,30 @@
             <div class="card-group d-block d-md-flex row">
                 <div class="card col-md-7 p-4 mb-0">
                     <div class="card-body">
-                        <h1>Login</h1>
-                        <p class="text-medium-emphasis">Sign In to your account</p>
-                        <div class="input-group mb-3"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                      </svg></span>
-                            <input v-model="formData.email" class="form-control" type="text" placeholder="Email">
-                        </div>
-                        <div class="input-group mb-4"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                      </svg></span>
-                            <input v-model="formData.password" class="form-control" type="password" placeholder="Password">
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <button @click="loginProcess()" class="btn btn-primary px-4" type="button">Login</button>
+                        <form @submit.prevent="loginProcess">
+                            <h1>Login</h1>
+                            <p class="text-medium-emphasis">Sign In to your account</p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input v-model="formData.email" class="form-control" type="text" placeholder="Email" required>
                             </div>
-                            <div class="col-6 text-end">
-                                <button class="btn btn-link px-0" type="button">Show password</button>
+                            <div class="input-group mb-4">
+                                <span class="input-group-text">
+                                    <i :class="!showPassword ? 'fas fa-lock' : 'fas fa-lock-open'"></i>
+                                </span>
+                                <input v-model="formData.password" class="form-control" :type="showPassword ? 'text' : 'password'" placeholder="Password" required>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary px-4" type="submit">Login</button>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <button class="btn btn-link px-0" type="button" @click="handleChangeShowPassword()">Show password</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="card col-md-5 text-white bg-primary">
@@ -49,10 +51,14 @@
                 formData: {
                     email: "",
                     password: ""
-                }
+                },
+                showPassword: false
             }
         },
         methods: {
+            handleChangeShowPassword() {
+                this.showPassword = !this.showPassword
+            },
             async loginProcess() {
                 try {
                     this.$vs.loading();
@@ -65,7 +71,7 @@
                             icon: 'success',
                             title: "success",
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         }).then(()=>{
                             this.$store.commit('SET_USER', {
                                 'name' : responseLogin.data.user.name,
@@ -80,21 +86,21 @@
                         })
                     } else {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'top',
                             icon: 'error',
                             title: responseLogin.message,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         })
                     }
                 } catch (e) {
                     this.$vs.loading.close()
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'top',
                         icon: 'error',
                         title: e.message,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                 }
 

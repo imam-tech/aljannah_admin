@@ -7,16 +7,16 @@
                     <div class="card-body">
                         <h1>Login</h1>
                         <p class="text-medium-emphasis">Silahkan Masukkan Kode Siswa dan Password</p>
-                        <div class="input-group mb-3"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                      </svg></span>
-                            <input v-model="formData.code" class="form-control" type="text" placeholder="Kode Siswa">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input v-model="formData.code" class="form-control" type="text" placeholder="Nomor Induk Siswa">
                         </div>
-                        <div class="input-group mb-4"><span class="input-group-text">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                      </svg></span>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
                             <input v-model="formData.password" class="form-control" type="password" placeholder="Kata Sandi">
                         </div>
                         <div class="row">
@@ -55,44 +55,43 @@
         methods: {
             async loginProcess() {
                 try {
-                    this.$router.push('/parent');
-                    // this.$vs.loading();
-                    // const responseLogin = await this.$axios.post(`api/parent/auth/login`, this.formData)
-                    // console.log("resp", responseLogin);
-                    // this.$vs.loading.close()
-                    // if (responseLogin.status) {
-                    //     Swal.fire({
-                    //         position: 'top',
-                    //         icon: 'success',
-                    //         title: "success",
-                    //         showConfirmButton: false,
-                    //         timer: 1500
-                    //     }).then(()=>{
-                    //         this.$store.commit('SET_USER', {
-                    //             'name' : responseLogin.data.user.name,
-                    //             'email' : responseLogin.data.user.email
-                    //         })
-                    //         this.$store.commit('SET_LOGIN', true)
-                    //         Cookies.set('access_token_parent_aljannah', responseLogin.data.token, { expires: 1 })
-                    //         this.$router.push('/app');
-                    //     })
-                    // } else {
-                    //     Swal.fire({
-                    //         position: 'top-end',
-                    //         icon: 'error',
-                    //         title: responseLogin.message,
-                    //         showConfirmButton: false,
-                    //         timer: 1500
-                    //     })
-                    // }
+                    this.$vs.loading();
+                    const responseLogin = await this.$axios.post(`api/parent/auth/login`, this.formData)
+                    console.log("resp", responseLogin);
+                    this.$vs.loading.close()
+                    if (responseLogin.status) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: "success",
+                            showConfirmButton: false,
+                            timer: 3000
+                        }).then(()=>{
+                            this.$store.commit('SET_USER', {
+                                'name' : responseLogin.data.user.name,
+                                'email' : responseLogin.data.user.email
+                            })
+                            this.$store.commit('SET_LOGIN', true)
+                            Cookies.set('access_token_parent_aljannah', responseLogin.data.token, { expires: 1 })
+                            this.$router.push('/parent/app');
+                        })
+                    } else {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'error',
+                            title: responseLogin.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                    }
                 } catch (e) {
                     this.$vs.loading.close()
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'top',
                         icon: 'error',
                         title: e.message,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                 }
 

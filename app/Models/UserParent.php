@@ -12,7 +12,6 @@ use Laravel\Sanctum\HasApiTokens;
 class UserParent extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,12 +21,11 @@ class UserParent extends Authenticatable
     protected $connection = "mysql";
     protected $table = 'user_parents';
 
+    public $timestamps = false;
+
     public $guard_name = 'parent';
     protected $guard = 'parent';
-    protected $fillable = [
-        'kode_siswa',
-        'password',
-    ];
+    protected $fillable = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -35,7 +33,7 @@ class UserParent extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'kata_sandi',
     ];
 
 }

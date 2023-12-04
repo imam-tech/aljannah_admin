@@ -1,10 +1,10 @@
-\<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserParentsTable extends Migration
+class CreateJabatanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateUserParentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_parents', function (Blueprint $table) {
+        Schema::create('jabatan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode_siswa');
-            $table->string('password');
+            $table->string('nama');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +28,6 @@ class CreateUserParentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_parents');
+        Schema::dropIfExists('jabatan');
     }
 }

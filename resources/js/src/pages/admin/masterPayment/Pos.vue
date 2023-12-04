@@ -60,34 +60,36 @@
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="form-label">Jenis Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control">
-                                    <option value="">--Pilih--</option>
-                                    <option value="1">Antar Jemput</option>
-                                </select>
+                        <form @submi.prevent="handleSubmit">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Jenis Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="1">Antar Jemput</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Pos Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="text" v-model="formData.pos_pembayaran" class="form-control" placeholder="Contoh: Full shadow 1" required>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Nominal <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="number" v-model="formData.nominal" class="form-control" required>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Status <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" v-model="formData.status" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="aktif">Aktif</option>
+                                        <option value="tidak aktif">Tidak Aktif</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Pos Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <input type="text" v-model="formData.pos_pembayaran" class="form-control" placeholder="Contoh: Full shadow 1">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Nominal <span class="text-danger"><b>*)</b></span></label>
-                                <input type="number" v-model="formData.nominal" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Status <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control" v-model="formData.status">
-                                    <option value="">--Pilih--</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-2">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
+                            <button class="btn btn-primary mt-2" type="submit">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -127,6 +129,9 @@
             }
         },
         methods: {
+            handleSubmit() {
+
+            },
             handleShowDetail(ol = null) {
                 this.formData = ol === null ?
                     {

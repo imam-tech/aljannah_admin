@@ -5,6 +5,8 @@ import studentPaymentRouter from './admin/studentPaymentRouter'
 import masterUserRouter from './admin/masterUserRouter'
 import masterRouter from './admin/masterRouter'
 import adminRouter from './admin/adminRouter'
+import studentRouter from './admin/studentRouter'
+import dashboardRouter from './admin/dashboardRouter'
 
 const auth = [
     {
@@ -31,6 +33,20 @@ const auth = [
         path: 'master',
         component: MenuLayout,
         children: masterRouter
+    },
+    {
+        path: 'student',
+        component: MenuLayout,
+        children: studentRouter
+    },
+    {
+        path: 'dashboard',
+        component: MenuLayout,
+        children: dashboardRouter
+    },
+    {
+        path: 'income-ppdb',
+        component:  () => import('../pages/admin/IncomePpdb')
     },
     {
         path: '',

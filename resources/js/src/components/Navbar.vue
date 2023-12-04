@@ -12,12 +12,27 @@
                 </router-link>
             <li class="nav-title">PPDB</li>
             <li class="nav-item">
+                <router-link class="nav-link" to="/app/admin/dashboard/ppdb">
+                    <i class="fas fa-chart-area nav-icon"></i> Dashboard
+                </router-link>
+            </li>
+            <li class="nav-item">
                 <router-link class="nav-link" to="/app/admin/online-admission">
                     <i class="fas fa-clipboard nav-icon"></i> Pendaftar Siswa Baru
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/app/admin/online-admission/received">
+                    <i class="fas fa-user-friends nav-icon"></i> Siswa Baru yang Diterima
+                </router-link>
+            </li>
             <li class="nav-divider"></li>
             <li class="nav-title">Keuangan</li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/app/admin/income-ppdb">
+                    <i class="fas fa-comment-dollar nav-icon"></i> Uang Masuk PPDB
+                </router-link>
+            </li>
             <li class="nav-group">
                 <span class="nav-link nav-group-toggle">
                     <i class="fas fa-database nav-icon"></i> Master Pembayaran
@@ -71,8 +86,13 @@
             <li class="nav-divider"></li>
             <li class="nav-title">Akademik</li>
             <li class="nav-item">
+                <router-link class="nav-link" to="/app/admin/dashboard/akademik">
+                    <i class="fas fa-chart-area nav-icon"></i> Dashboard
+                </router-link>
+            </li>
+            <li class="nav-item">
                 <router-link class="nav-link" to="/app/admin/master-user">
-                    <i class="fas fa-user nav-icon"></i> Data Pengguna
+                    <i class="fas fa-user nav-icon"></i> Guru atau Staf
                 </router-link>
             </li>
             <li class="nav-group">
@@ -90,7 +110,34 @@
                             <i class="fas fa-university nav-icon"></i> Jenjang
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/app/admin/master/level" target="_top">
+                            <i class="fas fa-level-up-alt nav-icon"></i> Level
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/app/admin/master/kelas" target="_top">
+                            <i class="fas fa-house-user nav-icon"></i> Kelas
+                        </router-link>
+                    </li>
                 </ul>
+            </li>
+            <li class="nav-group">
+                <span class="nav-link nav-group-toggle">
+                    <i class="fas fa-user-circle nav-icon"></i> Siswa
+                </span>
+                <ul class="nav-group-items">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/app/admin/student" target="_top">
+                            <i class="fas fa-clipboard-list nav-icon"></i> Daftar
+                        </router-link>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <router-link class="nav-link" to="/app/admin/master-user/wali-kelas">
+                    <i class="fas fa-user-alt-slash nav-icon"></i> Wali Kelas
+                </router-link>
             </li>
             <li class="nav-divider"></li>
             <li class="nav-title">Administrator</li>
@@ -100,7 +147,7 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/app/admin/role">
+                <router-link class="nav-link" to="/app/admin/jabatan">
                     <i class="fas fa-user-md nav-icon"></i> Jabatan
                 </router-link>
             </li>

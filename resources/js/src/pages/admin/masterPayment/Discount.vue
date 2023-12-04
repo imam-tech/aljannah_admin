@@ -56,19 +56,21 @@
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="form-label">Nama Potongan Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <input type="text" v-model="formData.nama_potongan_pembayaran" class="form-control" placeholder="Anah Asuh">
+                        <form @submit.prevent="handleSubmit">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Nama Potongan Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="text" v-model="formData.nama_potongan_pembayaran" class="form-control" placeholder="Anah Asuh" required>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Persenan Potongan Pembayaran (%) <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="number" v-model="formData.persenan_potongan_pembayaran" class="form-control" placeholder="50 (50%)" required>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Persenan Potongan Pembayaran (%) <span class="text-danger"><b>*)</b></span></label>
-                                <input type="number" v-model="formData.persenan_potongan_pembayaran" class="form-control" placeholder="50 (50%)">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-2">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -95,6 +97,9 @@
             }
         },
         methods: {
+            handleSubmit() {
+
+            },
             handleShowDetail(ol = null) {
                 this.formData = ol == null ?
                     {

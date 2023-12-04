@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-    import Topbar from '../components/Topbar.vue'
+    import Topbar from '../components/TopbarParent.vue'
     import Navbar from '../components/NavbarParent.vue'
     import LogoutBar from '../components/LogoutBar.vue'
 

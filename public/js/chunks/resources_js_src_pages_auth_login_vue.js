@@ -24,10 +24,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formData: {
         email: "",
         password: ""
-      }
+      },
+      showPassword: false
     };
   },
   methods: {
+    handleChangeShowPassword: function handleChangeShowPassword() {
+      this.showPassword = !this.showPassword;
+    },
     loginProcess: function loginProcess() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -49,7 +53,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   icon: 'success',
                   title: "success",
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 3000
                 }).then(function () {
                   _this.$store.commit('SET_USER', {
                     'name': responseLogin.data.user.name,
@@ -67,11 +71,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
               } else {
                 Swal.fire({
-                  position: 'top-end',
+                  position: 'top',
                   icon: 'error',
                   title: responseLogin.message,
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 3000
                 });
               }
               _context.next = 14;
@@ -81,11 +85,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.t0 = _context["catch"](0);
               _this.$vs.loading.close();
               Swal.fire({
-                position: 'top-end',
+                position: 'top',
                 icon: 'error',
                 title: _context.t0.message,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
               });
             case 14:
             case "end":
@@ -123,19 +127,18 @@ var render = function render() {
     staticClass: "card col-md-7 p-4 mb-0"
   }, [_c("div", {
     staticClass: "card-body"
+  }, [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.loginProcess.apply(null, arguments);
+      }
+    }
   }, [_c("h1", [_vm._v("Login")]), _vm._v(" "), _c("p", {
     staticClass: "text-medium-emphasis"
   }, [_vm._v("Sign In to your account")]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-3"
-  }, [_c("span", {
-    staticClass: "input-group-text"
-  }, [_c("svg", {
-    staticClass: "icon"
-  }, [_c("use", {
-    attrs: {
-      "xlink:href": "vendors/@coreui/icons/svg/free.svg#cil-user"
-    }
-  })])]), _vm._v(" "), _c("input", {
+  }, [_vm._m(0), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -145,7 +148,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Email"
+      placeholder: "Email",
+      required: ""
     },
     domProps: {
       value: _vm.formData.email
@@ -160,13 +164,9 @@ var render = function render() {
     staticClass: "input-group mb-4"
   }, [_c("span", {
     staticClass: "input-group-text"
-  }, [_c("svg", {
-    staticClass: "icon"
-  }, [_c("use", {
-    attrs: {
-      "xlink:href": "vendors/@coreui/icons/svg/free.svg#cil-lock-locked"
-    }
-  })])]), _vm._v(" "), _c("input", {
+  }, [_c("i", {
+    "class": !_vm.showPassword ? "fas fa-lock" : "fas fa-lock-open"
+  })]), _vm._v(" "), (_vm.showPassword ? "text" : "password") === "checkbox" ? _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -175,8 +175,64 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "password",
-      placeholder: "Password"
+      placeholder: "Password",
+      required: "",
+      type: "checkbox"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.formData.password) ? _vm._i(_vm.formData.password, null) > -1 : _vm.formData.password
+    },
+    on: {
+      change: function change($event) {
+        var $$a = _vm.formData.password,
+          $$el = $event.target,
+          $$c = $$el.checked ? true : false;
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && _vm.$set(_vm.formData, "password", $$a.concat([$$v]));
+          } else {
+            $$i > -1 && _vm.$set(_vm.formData, "password", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.$set(_vm.formData, "password", $$c);
+        }
+      }
+    }
+  }) : (_vm.showPassword ? "text" : "password") === "radio" ? _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.password,
+      expression: "formData.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      placeholder: "Password",
+      required: "",
+      type: "radio"
+    },
+    domProps: {
+      checked: _vm._q(_vm.formData.password, null)
+    },
+    on: {
+      change: function change($event) {
+        return _vm.$set(_vm.formData, "password", null);
+      }
+    }
+  }) : _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.password,
+      expression: "formData.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      placeholder: "Password",
+      required: "",
+      type: _vm.showPassword ? "text" : "password"
     },
     domProps: {
       value: _vm.formData.password
@@ -189,31 +245,39 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-6"
-  }, [_c("button", {
-    staticClass: "btn btn-primary px-4",
-    attrs: {
-      type: "button"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.loginProcess();
-      }
-    }
-  }, [_vm._v("Login")])]), _vm._v(" "), _vm._m(0)])])]), _vm._v(" "), _vm._m(1)])])]);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "col-6 text-end"
   }, [_c("button", {
     staticClass: "btn btn-link px-0",
     attrs: {
       type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.handleChangeShowPassword();
+      }
     }
-  }, [_vm._v("Show password")])]);
+  }, [_vm._v("Show password")])])])])])]), _vm._v(" "), _vm._m(2)])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("span", {
+    staticClass: "input-group-text"
+  }, [_c("i", {
+    staticClass: "fas fa-user"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "col-6"
+  }, [_c("button", {
+    staticClass: "btn btn-primary px-4",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Login")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

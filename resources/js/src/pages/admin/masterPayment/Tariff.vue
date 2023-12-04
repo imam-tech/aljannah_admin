@@ -62,48 +62,50 @@
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="form-label">Pos Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control" v-model="formData.pos_pembayaran">
-                                    <option value="">--Pilih--</option>
-                                    <option value="Antar Jemput">Antar Jemput</option>
-                                </select>
+                        <form @submit.prevent="handleSubmit">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Pos Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" v-model="formData.pos_pembayaran" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="Antar Jemput">Antar Jemput</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Tarif Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="text" v-model="formData.tarif_pembayaran" class="form-control" placeholder="Contoh: TALENT ACTIVITY TAHFIZH TK">
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Tipe <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" v-model="formData.tipe" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="Bulanan">Bulanan</option>
+                                        <option value="Bebas">Bebas</option>
+                                        <option value="PSB">PSB</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Tahun Ajaran <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" v-model="formData.tahun_ajaran" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="2025/2026">2025/2026</option>
+                                        <option value="2024/2025">2024/2025</option>
+                                        <option value="2023/2022">2023/2022</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Status <span class="text-danger"><b>*)</b></span></label>
+                                    <select class="form-control" v-model="formData.status" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="aktif">Aktif</option>
+                                        <option value="tidak aktif">Tidak Aktif</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Tarif Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <input type="text" v-model="formData.tarif_pembayaran" class="form-control" placeholder="Contoh: TALENT ACTIVITY TAHFIZH TK">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Tipe <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control" v-model="formData.tipe">
-                                    <option value="">--Pilih--</option>
-                                    <option value="Bulanan">Bulanan</option>
-                                    <option value="Bebas">Bebas</option>
-                                    <option value="PSB">PSB</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Tahun Ajaran <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control" v-model="formData.tahun_ajaran">
-                                    <option value="">--Pilih--</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2023/2022">2023/2022</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Status <span class="text-danger"><b>*)</b></span></label>
-                                <select class="form-control" v-model="formData.status">
-                                    <option value="">--Pilih--</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-2">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
+                            <button class="btn btn-primary mt-2" type="submit">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -145,6 +147,9 @@
             }
         },
         methods: {
+            handleSubmit() {
+
+            },
             handleShowDetail(ol = null) {
                 this.formData = ol === null ?
                     {

@@ -54,15 +54,17 @@
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="form-label">Judul Jenis Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <input type="text" v-model="formData.title" class="form-control" placeholder="Contoh: Antar jemput">
+                        <form @submit.prevent="handleSubmit">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label">Judul Jenis Pembayaran <span class="text-danger"><b>*)</b></span></label>
+                                    <input type="text" v-model="formData.title" class="form-control" placeholder="Contoh: Antar jemput" required>
+                                </div>
                             </div>
-                        </div>
-                        <button class="btn btn-primary mt-2">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
+                            <button class="btn btn-primary mt-2" type="submit">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -92,6 +94,9 @@
             }
         },
         methods: {
+            handleSubmit() {
+                return
+            },
             handleShowDetail(ol = null) {
                 this.formData = ol == null ?
                     {

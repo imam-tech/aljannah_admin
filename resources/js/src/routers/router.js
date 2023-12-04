@@ -42,7 +42,7 @@ const router = new Router({
                 {
                     path: 'admin',
                     component: MenuLayout,
-                    children: adminRouter
+                    children: adminRouter,
                 },
             ]
         },

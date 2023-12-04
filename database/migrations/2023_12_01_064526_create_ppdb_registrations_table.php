@@ -16,6 +16,7 @@ class CreatePpdbRegistrationsTable extends Migration
         Schema::create('ppdb_registrations', function (Blueprint $table) {
             $table->increments('id');
             $table->string("nomor_pendaftaran");
+            $table->string("angkatan");
             $table->string('jenis_pendaftaran');
             $table->string('status_pendaftaran');
             $table->string('status_pembayaran');
@@ -27,7 +28,7 @@ class CreatePpdbRegistrationsTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
-            $table->decimal('berat_badan', 5, 1)->default(0);
+            $table->decimal('berat_badan', 5, 1)->nullable();
             $table->string('nama_ayah');
             $table->string('nama_ibu');
             $table->string('nama_wali')->nullable();

@@ -50,17 +50,17 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">{{ this.formData.id === null ? 'Tambah' : 'Ubah' }} Tipe Pembayaran</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">{{ this.formData.id === null ? 'Tambah' : 'Ubah' }} Jabatan</h5>
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
-                                <label class="form-label">Judul Jenis Pembayaran <span class="text-danger"><b>*)</b></span></label>
-                                <input type="text" v-model="formData.title" class="form-control" placeholder="Contoh: Antar jemput">
+                                <label class="form-label">Title <span class="text-danger"><b>*)</b></span></label>
+                                <input type="text" v-model="formData.nama" class="form-control" placeholder="Contoh: Admin Keuangan">
                             </div>
                         </div>
-                        <button class="btn btn-primary mt-2">
+                        <button type="button" @click="handleSave()" class="btn btn-primary mt-2">
                             <i class="fas fa-save"></i> Simpan
                         </button>
                     </div>
@@ -77,30 +77,72 @@
             return {
                 detailData: null,
                 formData: {
-                    title: ""
+                    id: "",
+                    nama: ""
                 },
-                users: [
-                    {
-                        "id": 0,
-                        "nama": 'Guru'
-                    },
-                    {
-                        "id": 1,
-                        "nama": 'Staf'
-                    }
-                ]
+                users: []
             }
         },
+        mounted() {
+            this.handleGetData()
+        },
         methods: {
+            async handleGetData() {
+                try {
+                    this.$vs.loading();
+                    const resp = await this.$axios.get(`api/jabatan`)
+                    this.$vs.loading.close()
+                    this.users = resp
+                } catch (e) {
+                    this.$vs.loading.close()
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'error',
+                        title: e.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
+            },
             handleShowDetail(ol = null) {
-                this.formData = ol == null ?
-                    {
-                        "id": null,
-                        'title': ""
-                    }: ol
-                console.log("handle", this.formData)
+                if (!ol) {
+                   this.formData = {
+                       id: "",
+                       nama: ""
+                   }
+                } else {
+                    this.formData = ol
+                }
                 $("#addModal").modal("show")
-            }
+            },
+            async handleSave() {
+                try {
+                    this.$vs.loading();
+                    const resp = await this.$axios.post(`api/jabatan`, this.formData)
+                    this.$vs.loading.close()
+                    if (!resp.status) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'error',
+                            title: resp.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        return
+                    }
+                    $("#addModal").modal("hide")
+                    this.handleGetData()
+                } catch (e) {
+                    this.$vs.loading.close()
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'error',
+                        title: e.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
+            },
         }
     }
 </script>

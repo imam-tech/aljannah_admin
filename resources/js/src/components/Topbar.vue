@@ -15,16 +15,34 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end pt-0">
-                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                        </svg> Lock Account</a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                        </svg> Logout</a>
+                        <button class="dropdown-item">
+                            <i class="fas fa-user icon me-2"></i> Profile
+                        </button>
+                        <button class="dropdown-item" @click="confirmLogout()">
+                            <i class="fas fa-sign-out-alt icon me-2"></i> Logout
+                        </button>
                     </div>
                 </li>
             </ul>
         </div>
     </header>
 </template>
+
+<script>
+
+    import Cookies from 'js-cookie'
+
+    export default {
+        methods: {
+            async confirmLogout() {
+                let hasLogin = confirm('Are you sure you want to logout?')
+                if( hasLogin) {
+                    // await this.$axios.get(`api/auth/logout`)
+                    Cookies.remove('access_token_aljannah')
+                    this.$router.push('/auth/login');
+                }
+            }
+        }
+
+    }
+</script>
