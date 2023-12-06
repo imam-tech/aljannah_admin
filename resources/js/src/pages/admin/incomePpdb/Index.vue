@@ -40,6 +40,22 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label">Tahun Ajaran</label>
+                                    <select v-model="formFilter.angkatan" class="form-control">
+                                        <option value="2023/2024">2023/2024</option>
+                                        <option value="2022/2023">2022/2023</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 d-flex align-items-bottom justify-content-end">
+                                <button class="btn btn-success" type="button" @click="handleGetData()">
+                                    <i class="fas fa-search"></i> Cari
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12">
                                 <table class="table table-striped">
                                     <thead>
@@ -64,6 +80,11 @@
                                                 <span v-else>0</span>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="7" class="text-end">
+                                                <pagination v-model="page" :records="totalData" :per-page="perPage" @paginate="handleGetData"/>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -82,7 +103,13 @@
             return {
                 ppdbRegistrations: [],
                 totalPendaftaran: 0,
-                totalUangPangkal: 0
+                totalUangPangkal: 0,
+                page: 1,
+                totalData: 0,
+                perPage: 0,
+                formFilter: {
+                    angkatan: "2023/2024"
+                }
             }
         },
         mounted() {
@@ -91,12 +118,17 @@
         methods: {
             async handleGetData() {
                 try {
+                    const filters = new URLSearchParams(this.formFilter).toString()
                     this.$vs.loading();
-                    const resp = await this.$axios.get(`api/dashboard/income-ppdb`)
+                    const resp = await this.$axios.get(`api/dashboard/income-ppdb?page=${this.page}&${filters}`)
+                    console.log("resp", resp)
                     this.$vs.loading.close()
-                    this.ppdbRegistrations = resp.data
+                    this.ppdbRegistrations = resp.data.data
                     this.totalPendaftaran = resp.total_pendaftaran
                     this.totalUangPangkal = resp.total_uang_pangkal
+                    this.totalData = resp.data.total
+                    this.page = resp.data.current_page
+                    this.perPage = resp.data.per_page
                 } catch (e) {
                     this.$vs.loading.close()
                     Swal.fire({

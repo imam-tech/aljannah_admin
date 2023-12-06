@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-3 mb-3">
+                                        <div class="col-md-6 col-lg-3 mb-3">
                                             <label class="form-label">Jenis Pendaftaran <span class="text-danger"><b>*)</b></span></label>
                                             <select class="form-control" v-model="formData.jenis_pendaftaran" required>
                                                 <option value="">--Pilih Jenis Pendaftaran--</option>
@@ -35,21 +35,21 @@
                                                 <option value="Pindah">Pindah</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-3 mb-3">
+                                        <div class="col-md-6 col-lg-3 mb-3">
                                             <label class="form-label">Gelombang <span class="text-danger"><b>*)</b></span></label>
                                             <select class="form-control" v-model="formData.gelombang_pendaftaran" required>
                                                 <option value="">--Pilih Gelombang--</option>
                                                 <option :value="gl" v-for="(gl, glI) in gelombangData" :key="glI">{{ gl }}</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-3 mb-3">
+                                        <div class="col-md-6 col-lg-3 mb-3">
                                             <label class="form-label">Jenjang/Tujuan <span class="text-danger"><b>*)</b></span></label>
                                             <select class="form-control" v-model="formData.jenjang" required>
                                                 <option value="">--Pilih Jenjang--</option>
                                                 <option :value="jl" v-for="(jl, jlI) in jenjangData" :key="jlI">{{ jl }}</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-3 mb-3">
+                                        <div class="col-md-6 col-lg-3 mb-3">
                                             <label class="form-label">Jalur Pendaftaran <span class="text-danger"><b>*)</b></span></label>
                                             <select class="form-control" v-model="formData.jalur_pendaftaran" required>
                                                 <option value="">--Pilih Jalur--</option>
@@ -67,15 +67,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Nama Lengkap <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.nama_lengkap" class="form-control" placeholder="Nama Lengkap Anda" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">NIK <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.nomor_induk_kependudukan" class="form-control" placeholder="Nomor Induk Kependudukan" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Jenis Kelamin <span class="text-danger"><b>*)</b></span></label>
                                             <select class="form-control" v-model="formData.jenis_kelamin" required>
                                                 <option value="">-- Pilih Jenis Kelamin --</option>
@@ -83,16 +83,16 @@
                                                 <option value="Perempuan">Perempuan</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Tempat Lahir <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.tempat_lahir" class="form-control" placeholder="Contoh: Bogor" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Tanggal Lahir <span class="text-danger"><b>*)</b></span></label>
                                             <input type="date" v-model="formData.tanggal_lahir" class="form-control" placeholder="Tanggal Lahir" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
-                                            <label class="form-label">Berat Badan (satuan: gram)</label>
+                                        <div class="col-md-6 col-lg-4 mb-3">
+                                            <label class="form-label">Berat Badan (gram)</label>
                                             <input type="number" v-model="formData.berat_badan" class="form-control" placeholder="Contoh 60.5, (60.5 kg)">
                                         </div>
                                     </div>
@@ -104,27 +104,27 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Nama Lengkap Ayah <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.nama_ayah" class="form-control" placeholder="Nama Ayah Anda" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Nama Lengkap Ibu <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.nama_ibu" class="form-control" placeholder="Nama Ibu Anda" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">Nama Lengkap Wali</label>
                                             <input type="text" v-model="formData.nama_wali" class="form-control" placeholder="Isi ketika Anda menggunakan Wali">
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">No Telepon Ayah <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.telepon_ayah" class="form-control" placeholder="Contoh: 08123***" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">No Telepon Ibu <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.telepon_ibu" class="form-control" placeholder="Contoh: 08123***" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-md-6 col-lg-4 mb-3">
                                             <label class="form-label">No Telepon Wali</label>
                                             <input type="text" v-model="formData.telepon_wali" class="form-control" placeholder="Isi ketika Anda menggunakan Wali">
                                         </div>
@@ -137,11 +137,11 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-6 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Nama Asal Sekolah <span v-if="['SMP', 'SMA'].includes(formData.jenjang)" class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.nama_sekolah_sebelumnya" class="form-control" placeholder="Sekolah Sebelumnya" :required="['SMP', 'SMA'].includes(formData.jenjang) ? true : false">
                                         </div>
-                                        <div class="col-sm-6 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Status Asal Sekolah <span v-if="['SMP', 'SMA'].includes(formData.jenjang)" class="text-danger"><b>*)</b></span></label>
                                             <select v-model="formData.status_sekolah_sebelumnya" class="form-control" :required="['SMP', 'SMA'].includes(formData.jenjang) ? true : false">
                                                 <option value="">-- Pilih Status --</option>
@@ -149,11 +149,11 @@
                                                 <option value="Negeri">Negeri</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-8 mb-3">
+                                        <div class="col-lg-8 mb-3">
                                             <label class="form-label">Alamat Asal Sekolah <span v-if="['SMP', 'SMA'].includes(formData.jenjang)" class="text-danger"><b>*)</b></span></label>
                                             <input type="text" v-model="formData.alamat_sekolah_sebelumnya" class="form-control" placeholder="Alamat lengkap sekolah sebelumnya" :required="['SMP', 'SMA'].includes(formData.jenjang) ? true : false">
                                         </div>
-                                        <div class="col-sm-4 mb-3">
+                                        <div class="col-lg-4 mb-3">
                                             <label class="form-label">Tahun Lulus <span v-if="['SMP', 'SMA'].includes(formData.jenjang)" class="text-danger"><b>*)</b></span></label>
                                             <select v-model="formData.tahun_lulus_sekolah_sebelumnya" class="form-control" :required="['SMP', 'SMA'].includes(formData.jenjang) ? true : false">
                                                 <option value="">--Pilih--</option>
@@ -174,38 +174,38 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Kelurahan <span class="text-danger"><b>*)</b></span></label>
                                             <input v-model="formData.kelurahan" type="text" class="form-control" placeholder="Contoh: Kelurahan Mampang" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Kecamatan/Kota/Kabupaten <span class="text-danger"><b>*)</b></span></label>
                                             <input type="text" @keyup="handleSearchSubdistrict()" v-model="keywordAddress" class="form-control" placeholder="Silahkan cari kecamatan, kabupaten atau kota Anda" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Alamat <span class="text-danger"><b>*)</b></span></label>
                                             <select @change="handleChooseAddress()" v-model="chooseAddress" class="form-control" required>
                                                 <option value="">--Pilih--</option>
                                                 <option :value="ao" v-for="(ao, aoI) in addressOptions" :key="aoI">{{ ao }}</option>
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Kewarganegaraan <span class="text-danger"><b>*)</b></span></label>
                                             <input v-model="formData.kewarganegaraan" type="text" class="form-control" value="Indonesia" required>
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Jenis Tempat Tinggal</label>
                                             <input v-model="formData.jenis_tempat_tinggal" type="text" class="form-control" placeholder="Contoh: Rumah Sendiri">
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Transportasi ke Sekolah</label>
                                             <input v-model="formData.transportasi_ke_sekolah" type="text" class="form-control" placeholder="Contoh: Sepeda Motor">
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Jarak ke Sekolah (satuan Km)</label>
                                             <input v-model="formData.jarak_ke_sekolah" type="number" class="form-control" placeholder="Contoh: 10 (10 km)">
                                         </div>
-                                        <div class="col-sm-6 col-md-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Waktu Tempuh ke Sekolah (satuan menit)</label>
                                             <input v-model="formData.waktu_tempuh_ke_sekolah" type="number" class="form-control" placeholder="Contoh: 30 (30 menit)">
                                         </div>
@@ -271,30 +271,32 @@
                         <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Informasi</h5>
                         <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Nomor Pendaftaran <span class="text-danger"><b>*)</b></span></label>
-                                    <input type="text" v-model="formSearchRegister.registration_number" class="form-control" placeholder="Contoh: A-2023-1">
-                                    <label class="text-danger"><i>Nomor didapatkan ketika data Anda sukses disimpan</i></label>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tanggal Lahir <span class="text-danger"><b>*)</b></span></label>
-                                    <input type="date" v-model="formSearchRegister.date_of_birth" class="form-control" placeholder="Tanggal Lahir Anda">
-                                    <label class="text-danger"><i>Tanggal lahir didapatkan ketika Anda mengisi data pendaftaran</i></label>
+                    <form @submit.prevent="handleShowData">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nomor Pendaftaran <span class="text-danger"><b>*)</b></span></label>
+                                        <input type="text" v-model="formSearchRegister.registration_number" class="form-control" placeholder="Contoh: A-2023-1" required>
+                                        <label class="text-danger"><i>Nomor didapatkan ketika data Anda sukses disimpan</i></label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Tanggal Lahir <span class="text-danger"><b>*)</b></span></label>
+                                        <input type="date" v-model="formSearchRegister.date_of_birth" class="form-control" placeholder="Tanggal Lahir Anda" required>
+                                        <label class="text-danger"><i>Tanggal lahir didapatkan ketika Anda mengisi data pendaftaran</i></label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">
-                            <i class="fas fa-times"></i> Tutup
-                        </button>
-                        <button type="button" class="btn btn-primary" @click="handleShowData()">
-                            <i class="fas fa-search"></i> Cari
-                        </button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">
+                                <i class="fas fa-times"></i> Tutup
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -342,8 +344,8 @@
                 labelForm: 'Penerimaan Siswa Baru',
                 tahunLulus: [],
                 formSearchRegister: {
-                    registration_number: "",
-                    date_of_birth: ""
+                    registration_number: "D-2023-2",
+                    date_of_birth: "2023-12-02"
                 },
                 formData: {
                     "angkatan": '2023/2024',
@@ -385,8 +387,8 @@
             }
         },
         created() {
-            let yearBefore = new Date().getFullYear() - 10;
-            for (yearBefore; yearBefore < new Date().getFullYear(); yearBefore++) {
+            let yearBefore = new Date().getFullYear() - 1;
+            for (yearBefore; yearBefore > (new Date().getFullYear()-10); yearBefore--) {
                 this.tahunLulus.push(yearBefore)
             }
             this.handleJenjang();
@@ -401,9 +403,11 @@
                 this.detailRegistrationData = this.formData
                 $("#confirmDataModal").modal("show")
             },
+
             handleShowModalSearch() {
                 $("#searchDataModal").modal("show")
             },
+
             async handleShowData() {
                 try {
                     $("#searchDataModal").modal("hide")

@@ -11,7 +11,7 @@ const dashboardRouter = [
     },
     {
         path: 'ppdb',
-        name: 'dashboard-akademik',
+        name: 'dashboard-ppdb',
         component:  () => import('../../pages/admin/dashboard/Ppdb'),
         meta: {
             middleware: hasLoggedIn

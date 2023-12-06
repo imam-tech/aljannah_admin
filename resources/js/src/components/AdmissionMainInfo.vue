@@ -22,34 +22,34 @@
             <td class="text-danger">Silahkan melakukan pembayaran pendaftaran</td>
             <td colspan="2">
                 <ul>
-                    <li>Jumlah: Rp. {{ detailRegistrationData.jumlah_bayar }}</li>
+                    <li>Jumlah: Rp. {{ detailRegistrationData.jumlah_bayar | formatPrice }}</li>
                     <li>Bank: CIMB</li>
                     <li>Nomor Rekening: 12312312</li>
                     <li>Jika Anda sudah mentransfer pembayaran silahkan upload bukti <button @click="handleShowUploadForm('pendaftaran')" class="btn btn-warning">di sini</button></li>
                 </ul>
                 <div v-if="showBuktiBayarForm">
                     <div class="row">
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nomor Rekening Tujuan <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nomor_rekening_tujuan" type="text" class="form-control" placeholder="Contoh: Nomor Rekening Sekolah">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nama Rekening Tujuan <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nama_rekening_tujuan" type="text" class="form-control" placeholder="Contoh:CIMB">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nomor Rekening Pengirim <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nomor_rekening_pengirim" type="text" class="form-control" placeholder="Contoh: Nomor Rekening Anda">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nama Rekening Pengirim <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nama_rekening_pengirim" type="text" class="form-control" placeholder="Contoh: BCA">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">File Bukti Bayar <span class="text-danger"><b>*)</b></span></label>
                             <input type="file" class="form-control">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Tanggal Bayar <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.tanggal_bayar" type="date" class="form-control">
                         </div>
@@ -124,27 +124,27 @@
                 </ul>
                 <div v-if="showBuktiBayarForm">
                     <div class="row">
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nomor Rekening Tujuan <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nomor_rekening_tujuan" type="text" class="form-control" placeholder="Contoh: Nomor Rekening Sekolah">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nama Rekening Tujuan <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nama_rekening_tujuan" type="text" class="form-control" placeholder="Contoh:CIMB">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nomor Rekening Pengirim <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nomor_rekening_pengirim" type="text" class="form-control" placeholder="Contoh: Nomor Rekening Anda">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Nama Rekening Pengirim <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.nama_rekening_pengirim" type="text" class="form-control" placeholder="Contoh: BCA">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">File Bukti Bayar <span class="text-danger"><b>*)</b></span></label>
                             <input type="file" class="form-control">
                         </div>
-                        <div class="col-sm-6 mb-3">
+                        <div class="col-lg-6 mb-3">
                             <label class="form-label">Tanggal Bayar <span class="text-danger"><b>*)</b></span></label>
                             <input v-model="formUploadBukti.tanggal_bayar" type="date" class="form-control">
                         </div>
@@ -209,7 +209,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td rowspan="4" class="align-middle">
@@ -231,7 +231,7 @@
             <td class="text-end">{{ detailRegistrationData.jalur_pendaftaran }}</td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td rowspan="6" class="align-middle">
@@ -261,7 +261,7 @@
             <td class="text-end">{{ detailRegistrationData.berat_badan }} kg</td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td rowspan="6" class="align-middle">
@@ -291,7 +291,7 @@
             <td class="text-end">{{ detailRegistrationData.telepon_wali }}</td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td rowspan="4" class="align-middle">
@@ -313,7 +313,7 @@
             <td class="text-end">{{ detailRegistrationData.tahun_lulus_sekolah_sebelumnya }}</td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td rowspan="9" class="align-middle">
@@ -355,7 +355,7 @@
             <td class="text-end">{{ detailRegistrationData.waktu_tempuh_ke_sekolah }} menit</td>
         </tr>
         <tr>
-            <td colspan="3" class="bg-primary"></td>
+            <td colspan="3" class="bg-primary rounded-2"></td>
         </tr>
         <tr>
             <td colspan="3" class="text-center text-danger">
@@ -390,6 +390,7 @@
                 this.formUploadBukti.jumlah_bayar = this.detailRegistrationData.jumlah_bayar
                 this.showBuktiBayarForm = !this.showBuktiBayarForm
             },
+
             async handleReupload(type = 'pendaftaran') {
                 try {
                     const idProven = type === 'pendaftaran' ? this.detailRegistrationData.proven_pendaftaran.id : this.detailRegistrationData.proven_bpms.id
@@ -425,6 +426,7 @@
                     })
                 }
             },
+
             async handleUploadBukti(type = 'pendaftaran') {
                 try {
                     this.$vs.loading();

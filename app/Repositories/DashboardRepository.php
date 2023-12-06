@@ -22,14 +22,23 @@ class DashboardRepository {
         ];
     }
 
-    public function incomePpdb() {
+    public function incomePpdb($filters) {
+        $ppdbRegistrationAlls = PpdbRegistration::with(['proven_pendaftaran', 'proven_bpms'])
+            ->whereNotIn('status_pembayaran', ['-', 'menunggu pembayaran pendaftaran']);
         $ppdbRegistrations = PpdbRegistration::with(['proven_pendaftaran', 'proven_bpms'])
-            ->whereNotIn('status_pembayaran', ['-', 'menunggu pembayaran pendaftaran'])
-            ->get();
+            ->whereNotIn('status_pembayaran', ['-', 'menunggu pembayaran pendaftaran']);
+
+        if (!empty($filters['angkatan'])) {
+            $ppdbRegistrations = $ppdbRegistrations->where('angkatan', $filters['angkatan']);
+            $ppdbRegistrationAlls = $ppdbRegistrationAlls->where('angkatan', $filters['angkatan']);
+        }
+
+        $ppdbRegistrations = $ppdbRegistrations->paginate(5);
+        $ppdbRegistrationAlls = $ppdbRegistrationAlls->get();
 
         $totalPendaftaran = 0;
         $totalUangPangal = 0;
-        foreach ($ppdbRegistrations as $ppdbRegistration) {
+        foreach ($ppdbRegistrationAlls as $ppdbRegistration) {
             $totalPendaftaran = $totalPendaftaran + $ppdbRegistration->proven_pendaftaran->jumlah_bayar;
             if ($ppdbRegistration->proven_bpms) {
 

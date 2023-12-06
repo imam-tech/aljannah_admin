@@ -57,6 +57,9 @@ class PpdbRepository {
                 unset($data['created_at']);
                 unset($data['updated_at']);
                 unset($data['deleted_at']);
+                unset($data['student_ppdb_registration']);
+                unset($data['proven_pendaftaran']);
+                unset($data['proven_bpms']);
                 unset($data['id']);
 
                 PpdbRegistration::where('id', $ppdbRegis->id)->update($data);

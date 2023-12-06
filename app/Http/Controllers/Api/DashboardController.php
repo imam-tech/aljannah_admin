@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\DashboardRepository;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
     protected $dashboardRepo;
@@ -18,8 +19,9 @@ class DashboardController extends Controller {
         return response()->json($result);
     }
 
-    public function incomePpdb() {
-        $result = $this->dashboardRepo->incomePpdb();
+    public function incomePpdb(Request $request) {
+        $filters = $request->only(['angkatan']);
+        $result = $this->dashboardRepo->incomePpdb($filters);
         return response()->json($result);
     }
 }

@@ -30,9 +30,9 @@
                                     <option value="tidak">Tidak Punya</option>
                                 </select>
                             </div>
-                            <div class="col-md-4 d-flex align-items-center justify-content-center">
-                                <button @click="handleGetData()" type="button" class="btn btn-primary">
-                                    <i class="fas fa-search"></i>
+                            <div class="col-md-4 d-flex align-items-bottom justify-content-end">
+                                <button @click="handleGetData()" type="button" class="btn btn-success">
+                                    <i class="fas fa-search"></i> Cari
                                 </button>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="card-header d-flex align-items-center justify-content-between">
                         <span>Daftar Siswa yang Diterima</span>
                         <div>
                             <button type="button" @click="handleExportData()" class="btn btn-primary">
@@ -94,6 +94,11 @@
                                             @click="handleConfirmWawancara('tidak lolos wawancara', ol.id)" type="button" class="btn btn-danger">
                                         <i class="fas fa-times-circle"></i>
                                     </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="text-end">
+                                    <pagination v-model="page" :records="totalData" :per-page="perPage" @paginate="handleGetData"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -360,7 +365,10 @@
                 },
                 jenjangData: [],
                 file_import: '',
-                importData: []
+                importData: [],
+                page: 1,
+                totalData: 0,
+                perPage: 0,
             }
         },
         mounted() {
@@ -412,9 +420,13 @@
 
             async handleGetData() {
                 try {
+                    const filters = new URLSearchParams(this.formFilter).toString()
                     this.$vs.loading();
-                    const resp = await this.$axios.get(`api/ppdb?status_pendaftaran=${this.formFilter.status_pendaftaran}&status_pembayaran=${this.formFilter.status_pembayaran}&jenjang=${this.formFilter.jenjang}&punya_nis=${this.formFilter.punya_nis}`)
+                    const resp = await this.$axios.get(`api/ppdb?page=${this.page}&${filters}`)
                     this.onlineAdmissions = resp.data
+                    this.totalData = resp.total
+                    this.page = resp.current_page
+                    this.perPage = resp.per_page
                     this.$vs.loading.close()
                 } catch (e) {
                     this.$vs.loading.close()
